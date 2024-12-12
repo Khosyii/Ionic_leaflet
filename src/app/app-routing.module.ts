@@ -8,9 +8,22 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'maps2',
     pathMatch: 'full'
   },
+  {
+    path: 'maps2',
+    loadChildren: () => import('./maps2/maps2.module').then( m => m.Maps2PageModule)
+  },
+  {
+    path: 'carbon-calculator',
+    loadChildren: () => import('./carbon-calculator/carbon-calculator.module').then( m => m.CarbonCalculatorPageModule)
+  },
+  // {
+  //   path: '',
+  //   redirectTo: 'home',
+  //   pathMatch: 'full'
+  // },
 ];
 
 @NgModule({

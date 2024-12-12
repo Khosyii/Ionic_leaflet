@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carbon Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Jarak (km)</ion-label>
+    <ion-input type="number" [(ngModel)]="distance" placeholder="Masukkan jarak perjalanan"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Jenis Kendaraan</ion-label>
+    <ion-select [(ngModel)]="vehicleType" placeholder="Pilih jenis kendaraan">
+      <ion-select-option value="car">Mobil</ion-select-option>
+      <ion-select-option value="motorcycle">Motor</ion-select-option>
+      <ion-select-option value="bus">Bus</ion-select-option>
+      <ion-select-option value="bicycle">Sepeda</ion-select-option>
+      <ion-select-option value="walking">Jalan Kaki</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="full" (click)="calculateCarbon()">Hitung Emisi Karbon</ion-button>
+
+  <ion-item *ngIf="carbonEmission !== null">
+    <ion-label>Emisi Karbon: {{ carbonEmission }} kg CO2</ion-label>
+  </ion-item>
+</ion-content>

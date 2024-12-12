@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Routing Map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+  <!-- Kontainer Peta -->
+  <div id="map" style="height: 100%; width: 100%;"></div>
+
+  <!-- Tombol peta analisis
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="locate()">
+    <ion-fab-button>
+      <ion-icon name="map"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+  <!-- Tombol lokasi -->
+  <ion-fab color="success" vertical="bottom" horizontal="start" style="padding-bottom: 120px;" slot="fixed" (click)="locate()">
+    <ion-fab-button>
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Tombol Kalkulator Emisi -->
+  <ion-fab color="success" vertical="bottom" horizontal="start" style="padding-bottom: 60px;" slot="fixed" id="open-modal" expand="block">
+    <ion-fab-button>
+      <ion-icon name="calculator"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Kalkulator Emisi Modal -->
+<ion-content>
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button color="success" (click)="cancel()">Batal</ion-button>
+          </ion-buttons>
+          <ion-title>Kalkulator Emisi</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-item>
+          <ion-label>Jenis Mesin Kendaraan</ion-label>
+          <ion-select [(ngModel)]="vehicleType" name="vehicleType" placeholder="Pilih jenis mesin kendaraan anda" required>
+            <ion-select-option value="gasoline">Mobil Bensin</ion-select-option>
+            <ion-select-option value="diesel">Mobil Diesel</ion-select-option>
+            <ion-select-option value="motor">Motor</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Input Jarak -->
+        <ion-item>
+          <ion-label>Jarak (km)</ion-label> <br>
+          <ion-input style="margin-left: 250px;" type="number" [(ngModel)]="distance" name="distance" placeholder="Masukkan jarak" required></ion-input>
+        </ion-item>
+
+        <!-- Tombol untuk Menghitung Emisi -->
+        <ion-button color="success" expand="block"style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);" (click)="calculateEmissions()">Hitung Emisi</ion-button>
+
+        <!-- Hasil Kalkulasi Emisi -->
+        <ion-card *ngIf="emissionResult !== null">
+          <ion-card-header>
+            <ion-card-title>Emisi karbon yang dikeluarkan</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+           <p> <strong>{{ emissionResult }} kg CO₂</strong></p>
+           <p>{{ randomMessage }}</p>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Tombol untuk Refresh Perhitungan -->
+        <ion-button color="danger" *ngIf="emissionResult !== null" expand="block" style="position: absolute; margin-left: 30px; margin-top: 30px;" (click)="resetCalculator()">Refresh Perhitungan</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+
+
