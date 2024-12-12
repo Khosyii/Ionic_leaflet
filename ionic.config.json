@@ -1,0 +1,7 @@
+{
+  "name": "clearcarbon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
